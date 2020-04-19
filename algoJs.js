@@ -1,3 +1,36 @@
+// The objective is to return all pairs of integers from a given collection of integers that have a difference of 2.
+
+// The result should be sorted in ascending order.
+
+// The input will consist of unique values. The order of the integers in the input collection should not matter.
+
+// Examples
+// [1, 2, 3, 4]      -->  [[1, 3], [2, 4]]
+// [4, 1, 2, 3]      -->  [[1, 3], [2, 4]]
+// [1, 23, 3, 4, 7]  -->  [[1, 3]]
+// [4, 3, 1, 5, 6]   -->  [[1, 3], [3, 5], [4, 6]]
+function twosDifference(input) {
+  //SORT THE ARRAY
+  //DO SUBRTACTION OF CONSECUTIVE ELEMETS
+  //CHECK THE DIFFERENCE IF LESS THAN 2 CHECK FOR NEXT ELEMENT
+  //IF MATCH STORE PAIR IN TO ARRAY
+
+  let sortedArray = input.sort((a, b) => a - b);
+  const finalArray = [];
+  for (let i = 0; i < sortedArray.length; i++) {
+    for (let j = i + 1; j < sortedArray.length; j++) {
+      if (sortedArray[j] - sortedArray[i] === 2) {
+        finalArray.push(new Array(sortedArray[i], sortedArray[j]));
+        break;
+      }
+    }
+  }
+
+  return finalArray;
+}
+
+console.log(twosDifference([4, 3, 1, 5, 6]));
+
 // Write a function named sumEvenNumbers, taking a sequence of numbers as single parameter. Your function must return the sum of the even values of this sequence.
 
 // Only numbers without decimals like 4 or 4.0 can be even.
