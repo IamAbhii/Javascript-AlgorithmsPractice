@@ -1,3 +1,25 @@
+// We need the ability to divide an unknown integer into a given number of even parts — or at least as even as they can be.
+//ifThe sum of the parts should be the original value, but each part should be an integer, and they should be as close as possible.
+// Example code:
+// splitInteger(20, 6)  // returns [3, 3, 3, 3, 4, 4]
+// Complete the function so that it returns an array of integer representing the parts.
+//Ignoring the order of the parts, there is only one valid solution for each input to your function!
+// (Also, there is no reason to test for edge cases: the input to your function will always be valid for this kata.)
+
+function splitInteger(num, parts) {
+  //get modulo
+  //get the int vallue deviding buy num/parts
+  //make one array of that int - the rmainder
+  //make another one with remainder element size and add int+1 element.
+  const remainder = num % parts;
+  const int = Math.floor(num / parts);
+
+  const newArray = new Array(parts - remainder).fill(int);
+  const secondArray = new Array(remainder).fill(int + 1);
+  return [...newArray, ...secondArray];
+}
+console.log(splitInteger(20, 6));
+
 // The objective is to return all pairs of integers from a given collection of integers that have a difference of 2.
 
 // The result should be sorted in ascending order.
@@ -5,31 +27,55 @@
 // The input will consist of unique values. The order of the integers in the input collection should not matter.
 
 // Examples
-// [1, 2, 3, 4]      -->  [[1, 3], [2, 4]]
+// [1, 5, 2, 4]      -->  [[1, 3], [2, 4]]
 // [4, 1, 2, 3]      -->  [[1, 3], [2, 4]]
 // [1, 23, 3, 4, 7]  -->  [[1, 3]]
 // [4, 3, 1, 5, 6]   -->  [[1, 3], [3, 5], [4, 6]]
+//[1,5,6,7,9]
 function twosDifference(input) {
   //SORT THE ARRAY
   //DO SUBRTACTION OF CONSECUTIVE ELEMETS
   //CHECK THE DIFFERENCE IF LESS THAN 2 CHECK FOR NEXT ELEMENT
   //IF MATCH STORE PAIR IN TO ARRAY
 
-  let sortedArray = input.sort((a, b) => a - b);
-  const finalArray = [];
-  for (let i = 0; i < sortedArray.length; i++) {
-    for (let j = i + 1; j < sortedArray.length; j++) {
-      if (sortedArray[j] - sortedArray[i] === 2) {
-        finalArray.push(new Array(sortedArray[i], sortedArray[j]));
-        break;
-      }
+  // let sortedArray = input.sort((a, b) => a - b);
+  // const finalArray = [];
+  // for (let i = 0; i < sortedArray.length; i++) {
+  //   for (let j = i + 1; j < sortedArray.length; j++) {
+  //     if (sortedArray[j] - sortedArray[i] === 2) {
+  //       finalArray.push(new Array(sortedArray[i], sortedArray[j]));
+  //       break;
+  //     }
+  //   }
+  // }
+  let array = input
+    .sort(function (a, b) {
+      return a - b;
+    })
+    .filter(function (a) {
+      return input.indexOf(a + 2) != -1;
+    });
+
+  console.log(array);
+
+  let finalArray = array.map(function (a) {
+    return [a, a + 2];
+  });
+
+  return finalArray;
+  //////////////////////////////another method////////////////
+  input.sort((a, b) => a - b);
+  var arr = [];
+  for (var i = 0; i < input.length; ++i)
+    if (input.indexOf(input[i] + 2) != -1) {
+      arr.push([input[i], input[i] + 2]);
     }
-  }
+  return arr;
 
   return finalArray;
 }
 
-console.log(twosDifference([4, 3, 1, 5, 6]));
+console.log(twosDifference([1, 5, 6, 7, 9]));
 
 // Write a function named sumEvenNumbers, taking a sequence of numbers as single parameter. Your function must return the sum of the even values of this sequence.
 
