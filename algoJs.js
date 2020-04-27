@@ -1,3 +1,76 @@
+// Write a function that accepts two arguments and generates a sequence
+//containing the integers from the first argument to the second inclusive.
+// Input
+// Pair of integers greater than or equal to 0.
+//The second argument will always be greater than or equal to the first.
+// Example
+// generateIntegers(2, 5) // --> [2, 3, 4, 5]
+function generateIntegers(start, stop, step) {
+  // if (m === n) {
+  //   return [m];
+  // }
+  // let counter = m;
+  // let finalArray = [];
+  // while (n >= counter) {
+  //   finalArray.push(counter);
+  //   counter++;
+  // }
+  // return finalArray;
+
+  return Array.from({ length: n - m + 1 }, (_, i) => i + m);
+
+  //return Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
+}
+
+console.log(generateIntegers(0, 4, 1));
+
+function solution(digits) {
+  // convert input into string
+  // get lenth for loop
+  // compare element to to find biggest one
+  // 0123456789
+
+  // let maxElement = parseInt(digits[0]);
+  // for (let index = 1; index < digits.length - 4; index++) {
+  //   if (parseInt(digits[index]) > maxElement) {
+  //     maxElement = parseInt(digits[index]);
+  //   }
+  // }
+
+  // const index = digits.indexOf(maxElement);
+  // return parseInt(digits.slice(index, index + 5));
+
+  let answer = 0;
+
+  for (let i = 0; i < digits.length; i++) {
+    let number = digits.substr(i, 5); //each loop iteration pulls the next 5 digits into a substring
+    if (Number(number) > answer) {
+      //convert to number and compare against answer
+      answer = Number(number);
+    }
+  }
+  return answer;
+}
+
+console.log(solution('65429895'));
+// Positive integers have so many gorgeous features.
+//  Some of them could be expressed as a sum of two or more consecutive positive numbers.
+// Consider an Example :
+// 10 , could be expressed as a sum of 1 + 2 + 3 + 4.
+// Task
+// Given Positive integer, N , Return true
+// if it could be expressed as a sum of two or more consecutive positive numbers , OtherWise return false .
+
+function consecutiveDucks(num) {
+  while (num > 2) {
+    if (num % 2 != 0) return true;
+    num = num / 2;
+  }
+  return false;
+}
+
+console.log(consecutiveDucks(8));
+
 // We need the ability to divide an unknown integer into a given number of even parts — or at least as even as they can be.
 //ifThe sum of the parts should be the original value, but each part should be an integer, and they should be as close as possible.
 // Example code:
